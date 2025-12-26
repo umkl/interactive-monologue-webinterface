@@ -4,12 +4,12 @@ import { visualTokenStreamingSpeed } from "../const/prefs";
 
 type ChatBubbleProps = {
   text: string;
-  actionIds: string[];
+  actionButtons: React.ReactNode[];
 };
 
 export default function ChatBubble(props: ChatBubbleProps) {
   const [displayedText, setDisplayedText] = useState("");
-  const { text, actionIds } = props;
+  const { text, actionButtons } = props;
 
   useEffect(() => {
     let currentIndex = 0;
@@ -42,9 +42,7 @@ export default function ChatBubble(props: ChatBubbleProps) {
             gap: "10px",
           }}
         >
-          {actionIds.map((actionId) => {
-            return <div key={actionId}>{actionId}</div>;
-          })}
+          {actionButtons}
         </div>
       </div>
     </div>

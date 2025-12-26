@@ -4,6 +4,7 @@ import ChatBubble from "../comp/ChatBubble";
 import useScrollDisabler from "../hooks/useScrollDisabler";
 import chatBubbleObject from "../../data/chat-bubbles.json";
 import { initialChatBubbleIds } from "../const/prefs";
+import ActionButton from "../comp/ActionButton";
 
 const chatBubbleMap = new Map<string, ChatBubble>(
   Object.entries(chatBubbleObject) as any
@@ -43,7 +44,17 @@ export default function ChatBubbles() {
               <ChatBubble
                 key={idx}
                 text={chatBubbleText}
-                actionIds={chatBubbleActionIds}
+                actionButtons={[
+                  chatBubbleActionIds.map((actionId) => {
+                    return (
+                      <ActionButton
+                        key={actionId}
+                        label={actionId}
+                        click={() => {}}
+                      />
+                    );
+                  }),
+                ]}
               />
             )
           );
