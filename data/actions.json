@@ -1,0 +1,36 @@
+{
+  "chat:resume": {
+    "label": "Resume",
+    "type": "chat",
+    "value": "resume"
+  },
+  "chat:work": {
+    "id": "chat:work",
+    "label": "Work",
+    "type": "chat",
+    "value": "work"
+  },
+  "chat:contact": {
+    "id": "chat:contact",
+    "name": "Contact",
+    "type": "chat",
+    "value": "contact"
+  },
+  "locale:iterate": {
+    "id": "locale:iterate",
+    "name": "Swap Locale",
+    "type": "locale",
+    "value": "iterate"
+  },
+  "link:mail": {
+    "name": "mailto:john@doe.com",
+    "type": "link",
+    "value": "mailto:john@doe.com"
+  },
+  "link:github": {
+    "id": "link:github",
+    "name": "github.com/johndoe",
+    "type": "link",
+    "value": "github.com"
+  }
+}

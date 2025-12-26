@@ -1,0 +1,16 @@
+.chat-bubble {
+  background-color: purple;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+}
+
+.chat-bubble-pfpspacer {
+  content: "ad";
+  display: block;
+  position: relative;
+  background-color: orange;
+  height: 50px;
+  width: 50px;
+  flex-shrink: 0;
+}
