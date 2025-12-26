@@ -1,28 +1,17 @@
 "use client";
 import { useEffect, useState } from "react";
 import { visualTokenStreamingSpeed } from "../const/prefs";
+import { useTextStream } from "../hooks/useTextStream";
 
 type ChatBubbleProps = {
   text: string;
   actionButtons: React.ReactNode[];
+  streamEnabled: boolean;
 };
 
 export default function ChatBubble(props: ChatBubbleProps) {
-  const [displayedText, setDisplayedText] = useState("");
-  const { text, actionButtons } = props;
-
-  useEffect(() => {
-    let currentIndex = 0;
-    const interval = setInterval(() => {
-      if (currentIndex < text.length) {
-        setDisplayedText(text.slice(0, currentIndex + 1));
-        currentIndex++;
-      } else {
-        clearInterval(interval);
-      }
-    }, visualTokenStreamingSpeed);
-    return () => clearInterval(interval);
-  }, [text]);
+  const { text, actionButtons, streamEnabled } = props;
+  const displayText = useTextStream(text, streamEnabled);
 
   return (
     <div className="chat-bubble">
@@ -34,7 +23,7 @@ export default function ChatBubble(props: ChatBubbleProps) {
           gap: "10px",
         }}
       >
-        <div>{displayedText}</div>
+        <div>{displayText}</div>
         <div
           style={{
             display: "flex",

@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ChatBubble from "../comp/ChatBubble";
 import useScrollDisabler from "../hooks/useScrollDisabler";
 import chatBubbleObject from "../../data/chat-bubbles.json";
@@ -14,6 +14,7 @@ export default function ChatBubbles() {
   const { isScrollDisabled } = useScrollDisabler();
   const [shownChatBubbleIds, setShownChatBubbleIds] =
     useState(initialChatBubbleIds);
+  const newChatBubble = useRef(true);
 
   useEffect(() => {
     if (isScrollDisabled) return;
@@ -44,13 +45,20 @@ export default function ChatBubbles() {
               <ChatBubble
                 key={idx}
                 text={chatBubbleText}
+                streamEnabled={
+                  shownChatBubbleIds.length - 1 === idx && newChatBubble.current
+                }
                 actionButtons={[
                   chatBubbleActionIds.map((actionId) => {
                     return (
                       <ActionButton
                         key={actionId}
+                        value={actionId}
                         label={actionId}
-                        click={() => {}}
+                        click={() => {
+                          setShownChatBubbleIds((prev) => [...prev, "contact"]);
+                          newChatBubble.current = true;
+                        }}
                       />
                     );
                   }),
