@@ -1,10 +1,29 @@
+"use client";
+import { useEffect, useState } from "react";
+import { visualTokenStreamingSpeed } from "../const/prefs";
+
 type ChatBubbleProps = {
   text: string;
   actionIds: string[];
 };
 
 export default function ChatBubble(props: ChatBubbleProps) {
+  const [displayedText, setDisplayedText] = useState("");
   const { text, actionIds } = props;
+
+  useEffect(() => {
+    let currentIndex = 0;
+    const interval = setInterval(() => {
+      if (currentIndex < text.length) {
+        setDisplayedText(text.slice(0, currentIndex + 1));
+        currentIndex++;
+      } else {
+        clearInterval(interval);
+      }
+    }, visualTokenStreamingSpeed);
+    return () => clearInterval(interval);
+  }, [text]);
+
   return (
     <div className="chat-bubble">
       <div className="chat-bubble-pfpspacer"></div>
@@ -15,7 +34,7 @@ export default function ChatBubble(props: ChatBubbleProps) {
           gap: "10px",
         }}
       >
-        <div>{text}</div>
+        <div>{displayedText}</div>
         <div
           style={{
             display: "flex",
@@ -24,7 +43,7 @@ export default function ChatBubble(props: ChatBubbleProps) {
           }}
         >
           {actionIds.map((actionId) => {
-            return <div>{actionId}</div>;
+            return <div key={actionId}>{actionId}</div>;
           })}
         </div>
       </div>
