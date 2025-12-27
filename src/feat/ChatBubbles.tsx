@@ -49,7 +49,10 @@ export default function ChatBubbles() {
                         value={actionId}
                         label={actionId}
                         click={(value: ActionButtonType, ready: Promise<void>) => {
-                          dispatch(value);
+                          dispatch({
+                            type: "chat",
+                            value: actionId.split(":")[1],
+                          } as ActionButtonEvent);
                           isNewChatBubble.current = true;
                         }}
                       />

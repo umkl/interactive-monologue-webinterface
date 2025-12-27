@@ -4,7 +4,7 @@ type Chat = {
 
 type ChatStore = {
   state: Chat;
-  dispatch: React.Dispatch<ActionButtonType>;
+  dispatch: React.Dispatch<ActionButtonEvent>;
 };
 
 type ChatBubble = {
@@ -15,7 +15,10 @@ type ChatBubble = {
 type ActionButtonType = "chat" | "locale" | "link" | "download";
 type ActionButton = {
   id: string;
-  name: string;
+  label: string;
+  event: ActionButtonEvent;
+};
+type ActionButtonEvent = {
   type: ActionButtonType;
   value: string;
 };

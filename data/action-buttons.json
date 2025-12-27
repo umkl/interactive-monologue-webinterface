@@ -7,14 +7,18 @@
   "chat:work": {
     "id": "chat:work",
     "label": "Work",
-    "type": "chat",
-    "value": "work"
+    "event": {
+      "type": "chat",
+      "value": "work"
+    }
   },
   "chat:contact": {
     "id": "chat:contact",
     "name": "Contact",
-    "type": "chat",
-    "value": "contact"
+    "event": {
+      "type": "chat",
+      "value": "contact"
+    }
   },
   "locale:iterate": {
     "id": "locale:iterate",
