@@ -40,7 +40,7 @@ export default function ChatBubbles() {
                 text={chatBubbleText}
                 streamEnabled={
                   state.chatBubbles.length - 1 === idx && isNewChatBubble.current
-                }
+                } 
                 actionButtons={[
                   chatBubbleActionIds.map((actionId) => {
                     return (

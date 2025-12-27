@@ -1,10 +1,26 @@
 export function chatReducerFactory(chatBubbleMap: Map<string, ChatBubble>) {
   return function chatReducer(state: Chat, action: ActionButtonEvent) {
-    const actionvalue = action.value;
-    const newChatBubble = chatBubbleMap.get(actionvalue);
-    console.log("action value:", actionvalue);
-    console.log("Reducer action:", newChatBubble);
-    switch (action) {
+    switch (action.type) {
+      case "chat":
+        if (
+          state.chatBubbles
+            .map((chatBubble) => chatBubble.id)
+            .includes(action.value)
+        ) {
+          return state;
+        }
+        const newChatBubble = chatBubbleMap.get(action.value);
+        if (!newChatBubble) {
+          console.error(`Chat bubble with id ${action.value} not found.`);
+          return state;
+        }
+        return {
+          chatBubbles: [...state.chatBubbles, newChatBubble],
+        };
+      case "link":
+        const url = action.value;
+        window.open(url, "_blank");
+        return { ...state };
       default:
         return {
           chatBubbles: [...state.chatBubbles, newChatBubble],

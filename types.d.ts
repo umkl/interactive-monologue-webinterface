@@ -8,6 +8,7 @@ type ChatStore = {
 };
 
 type ChatBubble = {
+  id: string;
   text: string;
   actionIds: string[];
 };

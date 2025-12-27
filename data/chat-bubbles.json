@@ -6,5 +6,13 @@
   "contact": {
     "text": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae, nostrum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt quos possimus officia, nesciunt facilis laudantium dolores ratione voluptatem minus optio sequi quia. Molestias provident totam non, magnam beatae quibusdam architecto.",
     "actionIds": ["chat:resume", "chat:work", "chat:contact"]
+  },
+  "resume": {
+    "text": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae, nostrum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt quos possimus officia, nesciunt facilis laudantium dolores ratione voluptatem minus optio sequi quia. Molestias provident totam non, magnam beatae quibusdam architecto.",
+    "actionIds": ["chat:resume", "chat:work", "chat:contact"]
+  },
+  "work": {
+    "text": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae, nostrum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt quos possimus officia, nesciunt facilis laudantium dolores ratione voluptatem minus optio sequi quia. Molestias provident totam non, magnam beatae quibusdam architecto.",
+    "actionIds": ["chat:resume", "chat:work", "chat:contact"]
   }
 }
