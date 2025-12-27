@@ -32,5 +32,11 @@
     "name": "github.com/johndoe",
     "type": "link",
     "value": "github.com"
+  },
+  "download:resume": {
+    "id": "download:resume",
+    "name": "github.com/johndoe",
+    "type": "link",
+    "value": "resume.pdf"
   }
 }

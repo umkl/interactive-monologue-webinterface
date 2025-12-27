@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "dev": "next dev"
+    "dev": "next dev",
+    "build": "pnpm exec next build"
   },
   "dependencies": {
     "next": "^16.1.1",

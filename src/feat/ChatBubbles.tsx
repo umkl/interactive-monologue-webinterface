@@ -1,20 +1,14 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import ChatBubble from "../comp/ChatBubble";
 import useScrollDisabler from "../hooks/useScrollDisabler";
-import chatBubbleObject from "../../data/chat-bubbles.json";
-import { initialChatBubbleIds } from "../const/prefs";
 import ActionButton from "../comp/ActionButton";
-
-const chatBubbleMap = new Map<string, ChatBubble>(
-  Object.entries(chatBubbleObject) as any
-);
+import { ChatContext } from "../state/chatContext";
 
 export default function ChatBubbles() {
-  const { isScrollDisabled } = useScrollDisabler();
-  const [shownChatBubbleIds, setShownChatBubbleIds] =
-    useState(initialChatBubbleIds);
-  const newChatBubble = useRef(true);
+  const { state, dispatch } = useContext(ChatContext);
+  const { isScrollDisabled } = useScrollDisabler(!(state.chatBubbles.length > 1));
+  const isNewChatBubble = useRef(true);
 
   useEffect(() => {
     if (isScrollDisabled) return;
@@ -35,9 +29,8 @@ export default function ChatBubbles() {
       }}
     >
       <div style={{ height: "calc(50vh - 25px)" }} />
-      <div className="flex flex-col gap-6 max-w-2xl mx-auto">
-        {shownChatBubbleIds.map((chatBubbleId, idx) => {
-          const chatBubble = chatBubbleMap.get(chatBubbleId);
+      <div className="flex flex-col gap-6 max-w-[300px] mx-auto">
+        {state.chatBubbles.map((chatBubble, idx) => {
           const chatBubbleText = chatBubble.text;
           const chatBubbleActionIds = chatBubble.actionIds;
           return (
@@ -46,7 +39,7 @@ export default function ChatBubbles() {
                 key={idx}
                 text={chatBubbleText}
                 streamEnabled={
-                  shownChatBubbleIds.length - 1 === idx && newChatBubble.current
+                  state.chatBubbles.length - 1 === idx && isNewChatBubble.current
                 }
                 actionButtons={[
                   chatBubbleActionIds.map((actionId) => {
@@ -55,9 +48,9 @@ export default function ChatBubbles() {
                         key={actionId}
                         value={actionId}
                         label={actionId}
-                        click={() => {
-                          setShownChatBubbleIds((prev) => [...prev, "contact"]);
-                          newChatBubble.current = true;
+                        click={(value: ActionButtonType, ready: Promise<void>) => {
+                          dispatch(value);
+                          isNewChatBubble.current = true;
                         }}
                       />
                     );

@@ -11,7 +11,7 @@ type ChatBubbleProps = {
 
 export default function ChatBubble(props: ChatBubbleProps) {
   const { text, actionButtons, streamEnabled } = props;
-  const displayText = useTextStream(text, streamEnabled);
+  const {displayText, done} = useTextStream(text, streamEnabled);
 
   return (
     <div className="chat-bubble">
@@ -24,6 +24,7 @@ export default function ChatBubble(props: ChatBubbleProps) {
         }}
       >
         <div>{displayText}</div>
+        <div>{done ? "Done" : "Streaming..."}</div>
         <div
           style={{
             display: "flex",

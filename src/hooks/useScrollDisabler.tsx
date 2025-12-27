@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 
-export default function useScrollDisabler() {
-  const isScrollDisabled = true;
+export default function useScrollDisabler(enabled?: boolean) {
+  const isScrollDisabled = enabled ?? true;
 
   useEffect(() => {
     if (isScrollDisabled) {

@@ -16,5 +16,8 @@ export function useTextStream(textToDisplay: string, enabled: boolean) {
     }, visualTokenStreamingSpeed);
     return () => clearInterval(interval);
   }, [textToDisplay]);
-  return displayedText;
+  return {
+    displayText: displayedText,
+    done: displayedText === textToDisplay,
+  };
 }
