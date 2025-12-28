@@ -11,9 +11,16 @@ export default function ActionButton(props: ActionButtonProps) {
       onClick={() => click(value, Promise.resolve())}
       {...{
         style: {
-          borderRadius: "4px",
-          backgroundColor: "white",
-          padding: "4px",
+          appearance: "none",
+          borderRadius: "8px",
+          padding: "10px",
+          border: "0px solid black",
+          fontFamily: "inherit",
+          fontSize: "16px",
+          display: "flex",
+          lineHeight: "16px",
+          cursor: "pointer",
+          backgroundColor: "lightgray"
         },
       }}
     >

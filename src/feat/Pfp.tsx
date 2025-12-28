@@ -8,8 +8,8 @@ export default function Pfp() {
           position: "fixed",
           width: "50px",
           height: "50px",
-          borderRadius: "100%",
-          backgroundColor: "yellow",
+          borderRadius: "8px",
+          backgroundColor: "lightgray",
           zIndex: 10,
         },
       }}

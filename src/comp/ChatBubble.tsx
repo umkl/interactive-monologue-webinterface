@@ -23,7 +23,15 @@ export default function ChatBubble(props: ChatBubbleProps) {
           gap: "10px",
         }}
       >
-        <div>{displayText}</div>
+        <div {...{
+          style: {
+            padding: "10px",
+            boxSizing: "border-box",
+            backgroundColor: "lightgray",
+            borderRadius: "8px",
+        }}}>
+          <div>{displayText}</div>
+        </div>
         <div>{done ? "Done" : "Streaming..."}</div>
         <div
           style={{
