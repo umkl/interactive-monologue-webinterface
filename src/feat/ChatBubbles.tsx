@@ -64,7 +64,7 @@ export default function ChatBubbles() {
           );
         })}
       </div>
-      <div style={{ height: "calc(50vh - 25px)" }} />
+      <div style={{ height: "calc(50vh - 50px)" }} />
     </div>
   );
 }
