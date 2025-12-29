@@ -13,14 +13,16 @@ export default function ActionButton(props: ActionButtonProps) {
         style: {
           appearance: "none",
           borderRadius: "8px",
-          padding: "10px",
+          padding: "16px 20px",
           border: "0px solid black",
           fontFamily: "inherit",
           fontSize: "16px",
           display: "flex",
           lineHeight: "16px",
           cursor: "pointer",
-          backgroundColor: "lightgray"
+          textTransform: "capitalize",
+          backgroundColor: "lightgray",
+          fontWeight: "600",
         },
       }}
     >

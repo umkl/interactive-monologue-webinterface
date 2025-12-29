@@ -25,14 +25,16 @@ export default function ChatBubble(props: ChatBubbleProps) {
       >
         <div {...{
           style: {
-            padding: "10px",
+            padding: "16px 20px",
             boxSizing: "border-box",
             backgroundColor: "lightgray",
             borderRadius: "8px",
+            fontSize: "16px",
+            lineHeight: "1.5",
+            fontFamily: "Inter, system-ui, sans-serif",
         }}}>
-          <div>{displayText}</div>
+          {displayText}
         </div>
-        <div>{done ? "Done" : "Streaming..."}</div>
         <div
           style={{
             display: "flex",

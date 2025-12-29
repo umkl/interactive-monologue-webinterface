@@ -24,7 +24,6 @@ export default function ChatBubbles() {
   return (
     <div
       style={{
-        backgroundColor: "green",
         margin: "0 auto",
       }}
     >
@@ -64,7 +63,7 @@ export default function ChatBubbles() {
           );
         })}
       </div>
-      <div style={{ height: "calc(50vh - 50px)" }} />
+      {/* <div style={{ height: "calc(50vh - 50px)" }} /> */}
     </div>
   );
 }
