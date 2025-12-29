@@ -39,6 +39,7 @@ export default function ChatBubble(props: ChatBubbleProps) {
           style={{
             display: "flex",
             flexDirection: "row",
+            flexWrap: "wrap",
             gap: "10px",
           }}
         >

@@ -22,13 +22,14 @@ export default function ChatBubbles() {
   }, [isScrollDisabled]);
 
   return (
-    <div
-      style={{
-        margin: "0 auto",
-      }}
-    >
-      <div style={{ height: "calc(50vh - 25px)" }} />
-      <div className="flex flex-col gap-6 max-w-[300px] mx-auto">
+    <div style={{backgroundColor: "green", width: "100vw"}}>
+      <div style={{ height: "calc(50dvh - 25px)" }} />
+      <div {...{
+        style: {
+          display: "flex",
+          flexDirection: "column",
+          gap: "20px",
+      }}}>
         {state.chatBubbles.map((chatBubble, idx) => {
           const chatBubbleText = chatBubble.text;
           const chatBubbleActionIds = chatBubble.actionIds;

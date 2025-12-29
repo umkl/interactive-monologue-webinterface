@@ -7,7 +7,7 @@ export default function ChatSrOnly(props: ChatSrOnlyProps) {
   return <div className="chat-sr-only" aria-hidden="true">
     {props.chatBubbles
       .map((chatBubble) => (
-          <div>
+          <div key={chatBubble.id}>
             <h1>{chatBubble.id}</h1>
             <p>{chatBubble.text}</p>
           </div>
