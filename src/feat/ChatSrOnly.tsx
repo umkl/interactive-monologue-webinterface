@@ -1,0 +1,18 @@
+type ChatSrOnlyProps = {
+  chatBubbles: Array<ChatBubble>;
+}
+
+export default function ChatSrOnly(props: ChatSrOnlyProps) { 
+  const chatBubbles = props.chatBubbles;  
+  return <div className="chat-sr-only" aria-hidden="true">
+    {props.chatBubbles
+      .map((chatBubble) => (
+          <div>
+            <h1>{chatBubble.id}</h1>
+            <p>{chatBubble.text}</p>
+          </div>
+        )
+      )
+    }
+  </div>
+}
