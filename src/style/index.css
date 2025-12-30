@@ -9,3 +9,8 @@ html {
   line-height: 1.1;
   letter-spacing: 0.01rem;
 }
+
+body {
+  padding: 0;
+  margin: 0;
+}
