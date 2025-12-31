@@ -22,7 +22,7 @@ export default function ChatBubbles() {
   }, [isScrollDisabled]);
 
   return (
-    <div style={{backgroundColor: "green", width: "100vw"}}>
+    <div style={{width: "100%"}}>
       <div style={{ height: "calc(50dvh - 25px)" }} />
       <div {...{
         style: {
@@ -64,7 +64,7 @@ export default function ChatBubbles() {
           );
         })}
       </div>
-      {/* <div style={{ height: "calc(50vh - 50px)" }} /> */}
+      <div style={{ height: "calc(50dvh - 25px)" }} />
     </div>
   );
 }
