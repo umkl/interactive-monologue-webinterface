@@ -6,7 +6,7 @@ import ActionButton from "../comp/ActionButton";
 import { ChatContext } from "../state/chatContext";
 
 export default function ChatBubbles() {
-  const { state, dispatch } = useContext(ChatContext);
+  const { state, dispatch, actionButtonMap} = useContext(ChatContext);
   const { isScrollDisabled } = useScrollDisabler(!(state.chatBubbles.length > 1));
   const isNewChatBubble = useRef(true);
 
@@ -47,7 +47,7 @@ export default function ChatBubbles() {
                       <ActionButton
                         key={actionId}
                         value={actionId}
-                        label={actionId}
+                        label={actionButtonMap.get(actionId)?.label || "Button"}
                         click={(value: ActionButtonType, ready: Promise<void>) => {
                           dispatch({
                             type: "chat",

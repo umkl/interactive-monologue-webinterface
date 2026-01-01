@@ -8,6 +8,7 @@ import { chatReducerFactory } from "./chatReducer";
 type ChatProviderProps = {
   children: React.ReactNode;
   chatBubbleMap: Map<string, ChatBubble>;
+  actionButtonMap: Map<string, ActionButton>;
 }
 
 export default function ChatProvider(props: ChatProviderProps) {
@@ -19,7 +20,8 @@ export default function ChatProvider(props: ChatProviderProps) {
   const reducer = useReducer(chatReducerFactory(props.chatBubbleMap), initialChat);
   const chatStore: ChatStore = {
     state: reducer[0],
-    dispatch: reducer[1]
+    dispatch: reducer[1],
+    actionButtonMap: props.actionButtonMap,
   };
   return <ChatContext.Provider
     value={chatStore}

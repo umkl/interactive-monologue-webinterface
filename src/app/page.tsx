@@ -10,10 +10,26 @@ const chatBubbleMap = new Map<string, ChatBubble>(
     .map(([key, value]) => [key, { ...value, id: key } as ChatBubble])
 );
 
-export default function Page() {
+const server = process.env.MONOLOGUE_SERVER;
+const dir = process.env.MONOLOGUE_SERVER_DIR;
+
+async function getActionButtonMap() {  
+  try {
+    const response = await fetch(`${server}${dir}/action-buttons.json`);
+    const json = await response.json();
+    return new Map<string, ActionButton>(Object.entries(json).map(([key, value]) => [key, { ...value as object, id: key } as ActionButton]));
+  } catch (e) {
+    console.error("Failed to fetch action-buttons.json:", e);
+    return new Map<string, ActionButton>();
+  }
+}
+
+export default async function Page() {
+  const actionButtonMap = await getActionButtonMap();
+  
   return (
     <div>
-      <ChatProvider chatBubbleMap={chatBubbleMap}>
+      <ChatProvider chatBubbleMap={chatBubbleMap} actionButtonMap={actionButtonMap}>
         <ChatSrOnly chatBubbles={Array.from(chatBubbleMap.values())} />
         <Pfp />
         <ChatBubbles />
