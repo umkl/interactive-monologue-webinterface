@@ -1,18 +1,15 @@
-export default function Pfp() {
+const server = process.env.MONOLOGUE_SERVER;
+const dir = process.env.MONOLOGUE_SERVER_DIR;
+
+export default async function Pfp() {
   return (
-    <div
-      {...{
-        style: {
-          top: "50%",
-          transform: "translateY(-50%)",
-          position: "fixed",
-          width: "50px",
-          height: "50px",
-          borderRadius: "8px",
-          backgroundColor: "lightgray",
-          zIndex: 10,
-        },
-      }}
-    ></div>
+    <div className="chat-frame">
+      <img
+        {...{
+          className: "pfp",
+        }}
+        src={`${server}/${dir}/pfp.png`}
+      />
+    </div>
   );
 }

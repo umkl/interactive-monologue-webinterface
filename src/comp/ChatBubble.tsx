@@ -15,7 +15,8 @@ export default function ChatBubble(props: ChatBubbleProps) {
 
   return (
     <div className="chat-bubble">
-      <div className="chat-bubble-pfpspacer"></div>
+      <div className="chat-bubble-pfpspacer">
+      </div>
       <div
         style={{
           display: "flex",

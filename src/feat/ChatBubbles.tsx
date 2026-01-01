@@ -23,12 +23,12 @@ export default function ChatBubbles() {
 
   return (
     <div style={{width: "100%"}}>
-      <div style={{ height: "calc(50dvh - 25px)" }} />
+      <div className="chat-bubbles-spacer-block" />
       <div {...{
         style: {
           display: "flex",
           flexDirection: "column",
-          gap: "20px",
+          gap: "10px",
       }}}>
         {state.chatBubbles.map((chatBubble, idx) => {
           const chatBubbleText = chatBubble.text;
@@ -64,7 +64,7 @@ export default function ChatBubbles() {
           );
         })}
       </div>
-      <div style={{ height: "calc(50dvh - 25px)" }} />
+      <div className="chat-bubbles-spacer-block" />
     </div>
   );
 }

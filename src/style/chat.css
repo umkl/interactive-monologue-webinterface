@@ -1,0 +1,53 @@
+.chat-bubbles-spacer-block {
+  height: calc(50dvh - 40px);
+}
+
+.chat-bubble {
+  display: flex;
+  flex-direction: row;
+  z-index: 10;
+  gap: 10px;
+  margin-right: 10px;
+}
+
+.pfp {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 80px;
+  height: 80px;
+  overflow: hidden;
+  border-radius: 8px;
+  background-color: lightgray;
+  z-index: 10;
+  left: 10px;
+}
+
+.chat-bubble-pfpspacer {
+  display: block;
+  position: relative;
+  height: 80px;
+  width: 80px;
+  flex-shrink: 0;
+  margin-left: 10px;
+}
+
+.chat-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.chat-frame {
+  position: fixed;
+  height: 100dvh;
+  margin: 0 auto;
+  max-width: 500px;
+  width: 100%;
+}

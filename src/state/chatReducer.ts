@@ -1,5 +1,6 @@
 export function chatReducerFactory(chatBubbleMap: Map<string, ChatBubble>) {
   return function chatReducer(state: Chat, action: ActionButtonEvent) {
+    console.log("Dispatching action:", action);
     switch (action.type) {
       case "chat":
         if (

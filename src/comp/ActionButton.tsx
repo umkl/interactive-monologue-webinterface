@@ -8,7 +8,9 @@ export default function ActionButton(props: ActionButtonProps) {
 
   return (
     <button
-      onClick={() => click(value, Promise.resolve())}
+      onClick={() => {
+        click(value, Promise.resolve());
+      }}
       {...{
         style: {
           appearance: "none",
