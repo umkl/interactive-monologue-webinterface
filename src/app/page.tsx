@@ -1,17 +1,22 @@
 import ChatBubbles from "../feat/ChatBubbles";
 import Pfp from "../feat/Pfp";
-import chatBubbleObject from "../../data/chat-bubbles.json";
 import ChatProvider from "../state/ChatProvider";
 import ChatSrOnly from "../feat/ChatSrOnly";
 
-const chatBubbleMap = new Map<string, ChatBubble>(
-  Object
-    .entries(chatBubbleObject)
-    .map(([key, value]) => [key, { ...value, id: key } as ChatBubble])
-);
+
 
 const server = process.env.MONOLOGUE_SERVER;
 const dir = process.env.MONOLOGUE_SERVER_DIR;
+
+async function getChatBubbleMap() {  
+  try {
+    const response = await fetch(`${server}${dir}/chat-bubbles.json`);
+    const json = await response.json();
+    return new Map<string, ChatBubble>(Object.entries(json).map(([key, value]) => [key, { ...value as object, id: key } as ChatBubble]));
+  } catch (e) {
+    throw new Error("Failed to fetch chat-bubbles.json: ", e);
+  }
+}
 
 async function getActionButtonMap() {  
   try {
@@ -25,7 +30,7 @@ async function getActionButtonMap() {
 
 export default async function Page() {
   const actionButtonMap = await getActionButtonMap();
-  
+  const chatBubbleMap = await getChatBubbleMap();  
   return (
     <div>
       <ChatProvider chatBubbleMap={chatBubbleMap} actionButtonMap={actionButtonMap}>
