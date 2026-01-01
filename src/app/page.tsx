@@ -19,8 +19,7 @@ async function getActionButtonMap() {
     const json = await response.json();
     return new Map<string, ActionButton>(Object.entries(json).map(([key, value]) => [key, { ...value as object, id: key } as ActionButton]));
   } catch (e) {
-    console.error("Failed to fetch action-buttons.json:", e);
-    return new Map<string, ActionButton>();
+    throw new Error("Failed to fetch action-buttons.json: ", e);
   }
 }
 
