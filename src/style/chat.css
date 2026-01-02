@@ -19,6 +19,7 @@
   overflow: hidden;
   border-radius: 8px;
   background-color: lightgray;
+
   z-index: 10;
   left: 10px;
 }

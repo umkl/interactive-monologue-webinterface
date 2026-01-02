@@ -1,12 +1,13 @@
 @import "./chat.css";
-@import "./fonts.css";
 
 html {
   padding: 0;
   margin: 0;
-  font-family: Inter, system-ui, sans-serif;
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-weight: 400;
+  font-style: normal;
   font-size: 16px;
-  line-height: 1.1;
+  line-height: 0.8;
   letter-spacing: 0.01rem;
 }
 

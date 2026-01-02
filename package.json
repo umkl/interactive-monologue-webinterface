@@ -4,6 +4,7 @@
     "build": "pnpm exec next build"
   },
   "dependencies": {
+    "google": "link:next/font/google",
     "next": "^16.1.1",
     "react": "^19.2.3",
     "react-dom": "^19.2.3"

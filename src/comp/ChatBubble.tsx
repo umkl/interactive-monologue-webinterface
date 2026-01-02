@@ -31,8 +31,8 @@ export default function ChatBubble(props: ChatBubbleProps) {
             backgroundColor: "lightgray",
             borderRadius: "8px",
             fontSize: "16px",
-            lineHeight: "1.5",
-            fontFamily: "Inter, system-ui, sans-serif",
+            fontWeight: "400",
+            lineHeight: "1.4",
         }}}>
           {displayText}
         </div>
