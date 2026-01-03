@@ -13,3 +13,12 @@ Allows for augmenting the Chat Bubble list with new Chat Bubbles.
 #### Link
 
 Redirects the user to the link defined in `action-buttons.json`. 
+
+# Outlook
+
+- [ ] initial loading animation
+- [ ] sticky arrow chat bubble navigation
+- [ ] superellipse border radius
+- [ ] delay action buttons loading
+- [ ] like button with animation and tracking consent
+- [ ] add darkmode
