@@ -3,8 +3,6 @@ import Pfp from "../feat/Pfp";
 import ChatProvider from "../state/ChatProvider";
 import ChatSrOnly from "../feat/ChatSrOnly";
 
-
-
 const server = process.env.MONOLOGUE_SERVER;
 const dir = process.env.MONOLOGUE_SERVER_DIR;
 
@@ -30,11 +28,11 @@ async function getActionButtonMap() {
 
 export default async function Page() {
   const actionButtonMap = await getActionButtonMap();
-  const chatBubbleMap = await getChatBubbleMap();  
+  const unpopulatedChatBubbleMap = await getChatBubbleMap();  
   return (
     <div>
-      <ChatProvider chatBubbleMap={chatBubbleMap} actionButtonMap={actionButtonMap}>
-        <ChatSrOnly chatBubbles={Array.from(chatBubbleMap.values())} />
+      <ChatProvider unpopulatedChatBubbleMap={unpopulatedChatBubbleMap} actionButtonMap={actionButtonMap}>
+        <ChatSrOnly chatBubbles={Array.from(unpopulatedChatBubbleMap.values())} />
         <Pfp />
         <ChatBubbles />
       </ChatProvider>

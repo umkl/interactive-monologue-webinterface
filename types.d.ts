@@ -5,12 +5,12 @@ type Chat = {
 type ChatStore = {
   state: Chat;
   dispatch: React.Dispatch<ActionButtonEvent>;
-  actionButtonMap?: Map<string, ActionButton>;
 };
 
 type ChatBubble = {
   id: string;
   text: string;
+  actions: ActionButton[];
   actionIds: string[];
 };
 
