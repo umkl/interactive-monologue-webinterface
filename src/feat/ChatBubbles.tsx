@@ -75,8 +75,7 @@ export default function ChatBubbles() {
                     return (
                       <ActionButton
                         key={action.id}
-                        value={action.id}
-                        label={action.label || "Button"}
+                        action={action}
                         click={(value: ActionButtonType, ready: Promise<void>) => {
                           dispatch(action.event);
                           isNewChatBubble.current = true;

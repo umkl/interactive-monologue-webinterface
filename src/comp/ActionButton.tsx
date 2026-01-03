@@ -1,15 +1,14 @@
 type ActionButtonProps = {
-  label: string;
-  value: string;
+  action: ActionButton;
   click(value: string, ready: Promise<void>): void;
 };
 export default function ActionButton(props: ActionButtonProps) {
-  const { label, click, value } = props;
+  const { action, click} = props;
 
   return (
     <button
       onClick={() => {
-        click(value, Promise.resolve());
+        click(action.event.value, Promise.resolve());
       }}
       {...{
         style: {
@@ -22,12 +21,15 @@ export default function ActionButton(props: ActionButtonProps) {
           display: "flex",
           lineHeight: "16px",
           cursor: "pointer",
-          backgroundColor: "lightgray",
+          backgroundColor: "whitesmoke",
           fontWeight: "600",
         },
       }}
     >
-      {label}
+      {action.label}
+      {action.event.type === "link" ? (
+        <span style={{ marginLeft: "8px" }}>🔗</span>
+      ) : null}
     </button>
   );
 }

@@ -25,13 +25,13 @@ const ChatBubble = forwardRef<HTMLDivElement, ChatBubbleProps>((props, ref) => {
       >
         <div
           style={{
-            padding: "16px 20px",
+            padding: "16px 16px",
             boxSizing: "border-box",
-            backgroundColor: "lightgray",
+            backgroundColor: "whitesmoke",
             borderRadius: "8px",
             fontSize: "16px",
             fontWeight: "400",
-            lineHeight: "1.4",
+            lineHeight: "1.3",
           }}
         >
           {displayText}
