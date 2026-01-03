@@ -22,7 +22,6 @@ export default function ActionButton(props: ActionButtonProps) {
           display: "flex",
           lineHeight: "16px",
           cursor: "pointer",
-          textTransform: "capitalize",
           backgroundColor: "lightgray",
           fontWeight: "600",
         },
