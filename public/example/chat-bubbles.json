@@ -1,0 +1,14 @@
+{
+  "intro": {
+    "text": "Hi, I'm Alex. I build small web apps and play with TypeScript.",
+    "actionIds": ["chat:about", "chat:projects"]
+  },
+  "about": {
+    "text": "I like coding, design, and coffee. Here's a bit about me.",
+    "actionIds": ["link:portfolio", "download:bio"]
+  },
+  "contact": {
+    "text": "Want to get in touch? Here's how.",
+    "actionIds": ["mail:alex", "link:linkedin"]
+  }
+}

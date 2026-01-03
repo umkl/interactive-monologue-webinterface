@@ -3,12 +3,22 @@ import Pfp from "../feat/Pfp";
 import ChatProvider from "../state/ChatProvider";
 import ChatSrOnly from "../feat/ChatSrOnly";
 
-const server = process.env.MONOLOGUE_SERVER;
-const dir = process.env.MONOLOGUE_SERVER_DIR;
+const prodBaseUrl = process.env.MONOLOGUE_SERVER;
+const prodDir = process.env.MONOLOGUE_SERVER_DIR;
 
-async function getChatBubbleMap() {  
+const baseUrl = process.env.NODE_ENV === "production" ?
+  prodBaseUrl :
+  process.env.NEXT_PUBLIC_SITE_URL ?? `http://localhost:3000`;
+
+const dir = process.env.NODE_ENV === "production" ?
+  prodDir :
+  "/example";
+
+const basePath = `${baseUrl}${dir}`;
+
+async function getChatBubbleMap() {
   try {
-    const response = await fetch(`${server}${dir}/chat-bubbles.json`);
+    const response = await fetch(`${basePath}/chat-bubbles.json`);
     const json = await response.json();
     return new Map<string, ChatBubble>(Object.entries(json).map(([key, value]) => [key, { ...value as object, id: key } as ChatBubble]));
   } catch (e) {
@@ -18,7 +28,9 @@ async function getChatBubbleMap() {
 
 async function getActionButtonMap() {  
   try {
-    const response = await fetch(`${server}${dir}/action-buttons.json`);
+    const source = `${basePath}/action-buttons.json`;
+    console.log(source)
+    const response = await fetch(source);
     const json = await response.json();
     return new Map<string, ActionButton>(Object.entries(json).map(([key, value]) => [key, { ...value as object, id: key } as ActionButton]));
   } catch (e) {
@@ -33,7 +45,7 @@ export default async function Page() {
     <div>
       <ChatProvider unpopulatedChatBubbleMap={unpopulatedChatBubbleMap} actionButtonMap={actionButtonMap}>
         <ChatSrOnly chatBubbles={Array.from(unpopulatedChatBubbleMap.values())} />
-        <Pfp />
+        <Pfp basePath={basePath} />
         <ChatBubbles />
       </ChatProvider>
     </div>

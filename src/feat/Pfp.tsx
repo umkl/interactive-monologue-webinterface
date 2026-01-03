@@ -1,18 +1,16 @@
-import fs from "fs";
-import path from "path";
+interface PfpProps { 
+  basePath: string;
+}
 
-const server = process.env.MONOLOGUE_SERVER;
-const dir = process.env.MONOLOGUE_SERVER_DIR;
-
-export default async function Pfp() {
-  let imgSrc = `${server}/${dir}/pfp.png`;
+export default async function Pfp(props: PfpProps) {
+  let imgSrc =  `${props.basePath}/pfp.png`;
   try {
     const res = await fetch(imgSrc);
     if (res.status === 404) {
       throw new Error("PNG not found");
     }
   } catch (err) {
-    imgSrc = `${server}/${dir}/pfp.jpg`;
+    imgSrc = `${props.basePath}/pfp.jpg`;
   } 
   
   return (
