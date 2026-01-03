@@ -2,21 +2,20 @@
 import { useEffect, useState } from "react";
 import { visualTokenStreamingSpeed } from "../const/prefs";
 import { useTextStream } from "../hooks/useTextStream";
-
+import React, { forwardRef } from "react";
 type ChatBubbleProps = {
   text: string;
   actionButtons: React.ReactNode[];
   streamEnabled: boolean;
 };
 
-export default function ChatBubble(props: ChatBubbleProps) {
+const ChatBubble = forwardRef<HTMLDivElement, ChatBubbleProps>((props, ref) => {
   const { text, actionButtons, streamEnabled } = props;
-  const {displayText, done} = useTextStream(text, streamEnabled);
+  const { displayText, done } = useTextStream(text, streamEnabled);
 
   return (
-    <div className="chat-bubble">
-      <div className="chat-bubble-pfpspacer">
-      </div>
+    <div className="chat-bubble" ref={ref}>
+      <div className="chat-bubble-pfpspacer"></div>
       <div
         style={{
           display: "flex",
@@ -24,8 +23,8 @@ export default function ChatBubble(props: ChatBubbleProps) {
           gap: "10px",
         }}
       >
-        <div {...{
-          style: {
+        <div
+          style={{
             padding: "16px 20px",
             boxSizing: "border-box",
             backgroundColor: "lightgray",
@@ -33,7 +32,8 @@ export default function ChatBubble(props: ChatBubbleProps) {
             fontSize: "16px",
             fontWeight: "400",
             lineHeight: "1.4",
-        }}}>
+          }}
+        >
           {displayText}
         </div>
         <div
@@ -49,4 +49,6 @@ export default function ChatBubble(props: ChatBubbleProps) {
       </div>
     </div>
   );
-}
+});
+
+export default ChatBubble;

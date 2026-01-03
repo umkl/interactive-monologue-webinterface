@@ -6,14 +6,16 @@ import ActionButton from "../comp/ActionButton";
 import { ChatContext } from "../state/chatContext";
 
 export default function ChatBubbles() {
-  const { state, dispatch} = useContext(ChatContext);
+  const { state, dispatch } = useContext(ChatContext);
   const { isScrollDisabled } = useScrollDisabler(!(state.chatBubbles.length > 1));
   const isNewChatBubble = useRef(true);
-
+   const bubbleDomRefs = useRef<(HTMLDivElement | null)[]>([])
   useEffect(() => {
     if (isScrollDisabled) return;
 
-    const handleScroll = () => {};
+    
+
+    const handleScroll = () => { };
 
     window.addEventListener("scroll", handleScroll);
     return () => {
@@ -21,8 +23,32 @@ export default function ChatBubbles() {
     };
   }, [isScrollDisabled]);
 
+  const [currentIndex, setCurrentIndex] = useState(0)
+
+  function scrollToChatBubble(ix: number) {
+    const bubble = bubbleDomRefs.current[ix]
+    if (bubble) {
+      const viewportHeight = window.innerHeight
+      const bubbleTop = bubble.getBoundingClientRect().top + window.scrollY
+      const scrollPosition = bubbleTop - viewportHeight / 2 + 40
+      window.scrollTo({ top: scrollPosition, behavior: "smooth" })
+      if (ix !== currentIndex) {
+        // triggerHaptic()
+      }
+      setCurrentIndex(ix)
+    }
+  }
+
+  useEffect(() => {
+    if (state.chatBubbles.length > 0) {
+      setTimeout(() => {
+        scrollToChatBubble(state.chatBubbles.length - 1)
+      }, 50)
+    }
+  }, [state.chatBubbles.length])
+
   return (
-    <div style={{width: "100%"}}>
+    <div style={{ width: "100%" }} >
       <div className="chat-bubbles-spacer-block" />
       <div {...{
         style: {
@@ -30,15 +56,18 @@ export default function ChatBubbles() {
           flexDirection: "column",
           gap: "10px",
       }}}>
-        {state.chatBubbles.map((chatBubble, idx) => {
+        {state.chatBubbles.map((chatBubble, ix) => {
           const chatBubbleText = chatBubble.text;
           return (
             chatBubbleText && (
               <ChatBubble
-                key={idx}
+                key={ix}
+                ref={(el) => {
+                  bubbleDomRefs.current[ix] = el
+                }}
                 text={chatBubbleText}
                 streamEnabled={
-                  state.chatBubbles.length - 1 === idx && isNewChatBubble.current
+                  state.chatBubbles.length - 1 === ix && isNewChatBubble.current
                 } 
                 actionButtons={[
                   chatBubble.actions.map((action) => {
