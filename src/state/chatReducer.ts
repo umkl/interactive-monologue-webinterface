@@ -21,6 +21,11 @@ export function chatReducerFactory(chatBubbleMap: Map<string, ChatBubble>) {
         const url = action.value;
         window.open(url, "_blank");
         return { ...state };
+      case "link":
+      case "download":
+        const url2 = action.value;
+        window.open(url2, "_blank")?.focus();
+        return { ...state };
       default:
         return {
           chatBubbles: [...state.chatBubbles, newChatBubble],
