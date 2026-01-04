@@ -18,14 +18,7 @@ const dir = process.env.NODE_ENV === "production" ?
 
 const basePath = `${baseUrl}${dir}`;
 
-export const metadata: Metadata = {
-  title: "Monologue Chat Example",
-  description: "An example implementation of Monologue Chat.",
-  icons: {
-    icon: `${basePath}/favicon.png`,
-    apple: `${basePath}/apple-touch-icon.png`,
-  },
-}
+
 
 async function getChatBubbleMap() {
   try {
@@ -46,6 +39,27 @@ async function getActionButtonMap() {
   } catch (e) {
     throw new Error("Failed to fetch action-buttons.json: ", e);
   }
+}
+
+async function getMetadata() { 
+  try {
+    const source = `${basePath}/metadata.json`;
+    const response = await fetch(source);
+    const json = await response.json();
+    return json;
+  } catch (e) {
+    throw new Error("Failed to fetch metadata.json: ", e);
+  }
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    ...(await getMetadata()),
+    icons: {
+      icon: `${basePath}/favicon.png`,
+      apple: `${basePath}/apple-touch-icon.png`,
+    },
+  };
 }
 
 export default async function Page() {
