@@ -29,7 +29,6 @@ async function getChatBubbleMap() {
 async function getActionButtonMap() {  
   try {
     const source = `${basePath}/action-buttons.json`;
-    console.log(source)
     const response = await fetch(source);
     const json = await response.json();
     return new Map<string, ActionButton>(Object.entries(json).map(([key, value]) => [key, { ...value as object, id: key } as ActionButton]));

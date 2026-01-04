@@ -41,7 +41,6 @@ export default function ChatProvider(props: ChatProviderProps) {
     chatBubbles: chatBubbles.filter(x=>initialChatBubbleIds.includes(x.id)),
   };
   const reducer = useReducer(chatReducerFactory(chatBubbleMap), initialChat);
-  console.log("ChatProvider state:", reducer[0]);
   const chatStore: ChatStore = {
     state: reducer[0],
     dispatch: reducer[1],

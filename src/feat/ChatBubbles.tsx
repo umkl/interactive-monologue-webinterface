@@ -71,7 +71,6 @@ export default function ChatBubbles() {
                 } 
                 actionButtons={[
                   chatBubble.actions.map((action) => {
-                    console.log("Rendering action button:", action);
                     return (
                       <ActionButton
                         key={action.id}
