@@ -2,6 +2,8 @@ import ChatBubbles from "../feat/ChatBubbles";
 import Pfp from "../feat/Pfp";
 import ChatProvider from "../state/ChatProvider";
 import ChatSrOnly from "../feat/ChatSrOnly";
+import { title } from "node:process";
+import { Metadata } from "next";
 
 const prodBaseUrl = process.env.MONOLOGUE_SERVER;
 const prodDir = process.env.MONOLOGUE_SERVER_DIR;
@@ -15,6 +17,15 @@ const dir = process.env.NODE_ENV === "production" ?
   "/example";
 
 const basePath = `${baseUrl}${dir}`;
+
+export const metadata: Metadata = {
+  title: "Monologue Chat Example",
+  description: "An example implementation of Monologue Chat.",
+  icons: {
+    icon: `${basePath}/favicon.png`,
+    apple: `${basePath}/apple-touch-icon.png`,
+  },
+}
 
 async function getChatBubbleMap() {
   try {
