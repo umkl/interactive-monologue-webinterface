@@ -55,10 +55,41 @@ async function getMetadata() {
 export async function generateMetadata(): Promise<Metadata> {
   return {
     ...(await getMetadata()),
-    icons: {
-      icon: `${basePath}/favicon.png`,
-      apple: `${basePath}/apple-touch-icon.png`,
-    },
+ 
+  icons: {
+    icon: [
+      {
+        url: `${basePath}/favicon.svg`,
+        type: "image/svg+xml",
+      },
+      {
+        url: `${basePath}/favicon-128.ico`,
+        sizes: "128x128",
+        type: "image/x-icon",
+      },
+      {
+        url: `${basePath}/favicon-128-dark.ico`,
+        sizes: "128x128",
+        type: "image/x-icon",
+        media: "(prefers-color-scheme: dark)",
+      },
+    ],
+    shortcut: [`${basePath}/favicon-128.ico`],
+    apple: [
+      {
+        url: `${basePath}/favicon-512.png`,
+        sizes: "512x512",
+        type: "image/png",
+      },
+    ],
+    other: [
+      {
+        rel: "icon",
+        url: `${basePath}/favicon-512-dark.png`,
+        media: "(prefers-color-scheme: dark)",
+      },
+    ],
+  },
   };
 }
 
