@@ -14,7 +14,7 @@ export default function ActionButton(props: ActionButtonProps) {
         style: {
           appearance: "none",
           borderRadius: "14px",
-          padding: "14px 16px 14px 20px",
+          padding: "14px 16px",
           border: "0px solid black",
           fontFamily: "inherit",
           fontSize: "16px",

@@ -30,7 +30,7 @@ const ChatBubble = forwardRef<HTMLDivElement, ChatBubbleProps>((props, ref) => {
             backgroundColor: "whitesmoke",
             borderRadius: "14px",
             fontSize: "16px",
-            fontWeight: "300",
+            fontWeight: "400",
           }}
         >
           {displayText}
