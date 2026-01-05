@@ -7,20 +7,20 @@ import { chatReducerFactory } from "./chatReducer";
 
 type ChatProviderProps = {
   children: React.ReactNode;
-  unpopulatedChatBubbleMap: Map<string, ChatBubble>;
-  actionButtonMap: Map<string, ActionButton>;
+  unpopulatedChatBubbleEntries: Array<[string, ChatBubble]>;
+  actionButtonEntries: Array<[string, ActionButton]>;
 }
 
 export default function ChatProvider(props: ChatProviderProps) {
+  const actionButtonMap = new Map<string, ActionButton>(props.actionButtonEntries);
   const children = props.children;
-  const chatBubbles = props.unpopulatedChatBubbleMap.keys().toArray().map(chatBubbleId => {
-    const chatBubble = props.unpopulatedChatBubbleMap.get(chatBubbleId);
+  const chatBubbles = props.unpopulatedChatBubbleEntries.map(([chatBubbleId, chatBubble]) => {
     if (!chatBubble) {
       console.error(`Chat bubble with id ${chatBubbleId} not found in chatBubbleMap.`);
       return null;
     }
     chatBubble.actions = chatBubble.actionIds.map((id) => {
-      const actionButton = props.actionButtonMap.get(id);
+      const actionButton = actionButtonMap.get(id);
       if (!actionButton) {
         console.error(`Action button with id ${id} not found in actionButtonMap.`);
         return null;

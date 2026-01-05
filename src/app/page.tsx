@@ -4,6 +4,7 @@ import ChatProvider from "../state/ChatProvider";
 import ChatSrOnly from "../feat/ChatSrOnly";
 import { title } from "node:process";
 import { Metadata } from "next";
+export const dynamic = 'force-static'
 
 const prodBaseUrl = process.env.MONOLOGUE_SERVER;
 const prodDir = process.env.MONOLOGUE_SERVER_DIR;
@@ -94,12 +95,12 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Page() {
-  const actionButtonMap = await getActionButtonMap();
-  const unpopulatedChatBubbleMap = await getChatBubbleMap();  
+  const actionButtonEntries = Array.from(await getActionButtonMap());
+  const unpopulatedChatBubbleEntries = Array.from(await getChatBubbleMap());  
   return (
     <div>
-      <ChatProvider unpopulatedChatBubbleMap={unpopulatedChatBubbleMap} actionButtonMap={actionButtonMap}>
-        <ChatSrOnly chatBubbles={Array.from(unpopulatedChatBubbleMap.values())} />
+      <ChatProvider unpopulatedChatBubbleEntries={unpopulatedChatBubbleEntries} actionButtonEntries={actionButtonEntries}>
+        <ChatSrOnly chatBubbles={unpopulatedChatBubbleEntries.map(x=>x[1])} />
         <Pfp basePath={basePath} />
         <ChatBubbles />
       </ChatProvider>
