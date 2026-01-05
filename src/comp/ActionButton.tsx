@@ -1,3 +1,4 @@
+
 type ActionButtonProps = {
   action: ActionButton;
   click(value: string, ready: Promise<void>): void;
@@ -10,22 +11,7 @@ export default function ActionButton(props: ActionButtonProps) {
       onClick={() => {
         click(action.event.value, Promise.resolve());
       }}
-      {...{
-        style: {
-          appearance: "none",
-          borderRadius: "14px",
-          padding: "14px 16px",
-          border: "0px solid black",
-          fontFamily: "inherit",
-          fontSize: "16px",
-          display: "flex",
-          fontWeight: "500",
-          alignItems: "center",
-          cursor: "pointer",
-          backgroundColor: "whitesmoke",
-
-        },
-      }}
+      className="action"
     >
       {action.label}
       {action.event.type === "link" ? (

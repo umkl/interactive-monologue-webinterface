@@ -52,3 +52,17 @@
   max-width: 500px;
   width: 100%;
 }
+
+.action {
+  font-size: 16px;
+  appearance: none;
+  border-radius: 14px;
+  padding: 14px 16px;
+  border: 0px solid black;
+  font-family: inherit;
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  cursor: pointer;
+  background-color: whitesmoke;
+}

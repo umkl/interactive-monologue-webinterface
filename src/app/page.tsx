@@ -4,6 +4,7 @@ import ChatProvider from "../state/ChatProvider";
 import ChatSrOnly from "../feat/ChatSrOnly";
 import { title } from "node:process";
 import { Metadata } from "next";
+
 export const dynamic = 'force-static'
 
 const prodBaseUrl = process.env.MONOLOGUE_SERVER;
@@ -18,8 +19,6 @@ const dir = process.env.NODE_ENV === "production" ?
   "/example";
 
 const basePath = `${baseUrl}${dir}`;
-
-
 
 async function getChatBubbleMap() {
   try {
@@ -56,7 +55,6 @@ async function getMetadata() {
 export async function generateMetadata(): Promise<Metadata> {
   return {
     ...(await getMetadata()),
- 
   icons: {
     icon: [
       {
@@ -95,12 +93,30 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Page() {
-  const actionButtonEntries = Array.from(await getActionButtonMap());
-  const unpopulatedChatBubbleEntries = Array.from(await getChatBubbleMap());  
+  const actionButtonMap = await getActionButtonMap();
+  const actionButtonEntries = Array.from(actionButtonMap);
+  const actionButtonKeys = actionButtonMap.keys().toArray();
+
+  const chatBubbleMap = await getChatBubbleMap();
+  const chatBubbleArray: ChatBubble[] = [];
+  for (const chatBubble of chatBubbleMap.values()) {
+    console.log("action ids:", chatBubble.actionIds);
+    const newActions = chatBubble.actionIds.reduce((acc, actionId) => {
+      if (actionButtonKeys.includes(actionId)) {
+        acc.push(actionButtonMap.get(actionId)!);
+      }
+      return acc;
+    }, []);
+    chatBubble.actions = newActions;
+    chatBubble.actionIds = newActions.map(action => action.id);
+    chatBubbleArray.push(chatBubble);
+  }
+  const chatBubbleEntries: Array<[string, ChatBubble]> = chatBubbleArray.map(chatBubble => [chatBubble.id, chatBubble]);
+  console.log(JSON.stringify(chatBubbleEntries, null, 2));
   return (
     <div>
-      <ChatProvider unpopulatedChatBubbleEntries={unpopulatedChatBubbleEntries} actionButtonEntries={actionButtonEntries}>
-        <ChatSrOnly chatBubbles={unpopulatedChatBubbleEntries.map(x=>x[1])} />
+      <ChatProvider chatBubbleEntries={chatBubbleEntries}>
+        <ChatSrOnly chatBubbles={chatBubbleEntries.map(x=>x[1])} />
         <Pfp basePath={basePath} />
         <ChatBubbles />
       </ChatProvider>
