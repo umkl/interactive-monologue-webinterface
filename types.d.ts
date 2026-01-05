@@ -14,7 +14,7 @@ type ChatBubble = {
   actionIds: string[];
 };
 
-type ActionButtonType = "chat" | "locale" | "link" | "download";
+type ActionButtonType = "chat" | "locale" | "link" | "download" | "mail";
 type ActionButton = {
   id: string;
   label: string;

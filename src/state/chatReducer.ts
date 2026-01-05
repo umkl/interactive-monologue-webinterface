@@ -21,7 +21,12 @@ export function chatReducerFactory(chatBubbleMap: Map<string, ChatBubble>) {
         const url = action.value;
         window.open(url, "_blank");
         return { ...state };
-      case "link":
+      case "mail":
+        const mailAddress = action.value;
+        window.location.href = `mailto:${mailAddress}`;
+        return {
+          ...state,
+        };
       case "download":
         const url2 = action.value;
         window.open(url2, "_blank")?.focus();
