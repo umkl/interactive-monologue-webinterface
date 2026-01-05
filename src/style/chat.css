@@ -45,6 +45,15 @@
   border-width: 0;
 }
 
+.chat-bubble-message {
+  border-radius: 10px;
+  padding: 16px 20px;
+  box-sizing: border-box;
+  background-color: whitesmoke;
+  font-size: 16px;
+  font-weight: 400;
+}
+
 .chat-frame {
   position: fixed;
   height: 100dvh;
@@ -66,4 +75,27 @@
   align-items: center;
   cursor: pointer;
   background-color: whitesmoke;
+}
+
+@media (max-width: 600px) {
+  .chat-bubbles-spacer-block {
+    height: calc(50dvh - 24px);
+  }
+
+  .pfp,
+  .chat-bubble-pfpspacer {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+  }
+
+  .chat-bubble-message {
+    border-radius: 10px;
+    padding: 14px 18px;
+  }
+
+  .action {
+    padding: 10px 12px;
+    border-radius: 10px;
+  }
 }

@@ -30,7 +30,8 @@ export default function ChatBubbles() {
     if (bubble) {
       const viewportHeight = window.innerHeight
       const bubbleTop = bubble.getBoundingClientRect().top + window.scrollY
-      const scrollPosition = bubbleTop - viewportHeight / 2 + 40
+      const pfpHeight = window.innerWidth < 600 ? 48 : 80
+      const scrollPosition = bubbleTop - viewportHeight / 2 + pfpHeight / 2
       window.scrollTo({ top: scrollPosition, behavior: "smooth" })
       if (ix !== currentIndex) {
         // triggerHaptic()
