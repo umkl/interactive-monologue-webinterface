@@ -61,7 +61,8 @@
   border: 0px solid black;
   font-family: inherit;
   display: flex;
-  font-weight: 500;
+  color: black;
+  font-weight: 600;
   align-items: center;
   cursor: pointer;
   background-color: whitesmoke;

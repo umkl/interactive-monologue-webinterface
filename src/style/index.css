@@ -8,6 +8,7 @@ html {
   font-style: normal;
   font-size: 16px;
   letter-spacing: 0%;
+  background-color: transparent;
 }
 
 body {
@@ -16,4 +17,5 @@ body {
   max-width: 500px;
   width: 100%;
   margin: 0 auto;
+  background-color: transparent;
 }
